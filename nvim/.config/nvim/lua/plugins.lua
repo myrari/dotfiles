@@ -84,7 +84,7 @@ return {
 		opts = {
 			projects = {
 				"~/projects/*",
-				"~/.dotfiles/*",
+				"~/dotfiles/*",
 				"mnt/diomonster/repo/*",
 			},
 		},

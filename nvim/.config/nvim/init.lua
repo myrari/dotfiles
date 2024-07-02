@@ -30,13 +30,13 @@ vim.keymap.set({"n", "v", "o"}, '<C-w><C-l>', '<C-w>k')
 vim.keymap.set({"n", "v", "o"}, '<C-w><C-;>', '<C-w>l')
 -- semicolon is different. idk why. it just randomly stopped working
 
--- faster window creation
-vim.keymap.set("n", "<leader>v", ":wincmd v<cr>:wincmd l<cr>")
-vim.keymap.set("n", "<leader>h", ":wincmd s<cr>:wincmd j<cr>")
+-- faster window creation, swapped h/v cuz it makes more sense to me
+vim.keymap.set("n", "<leader>h", ":wincmd v<cr>:wincmd l<cr>")
+vim.keymap.set("n", "<leader>v", ":wincmd s<cr>:wincmd j<cr>")
 
 -- terminal keybinds
-vim.keymap.set("n", "<leader>tv", ":wincmd v<cr>:wincmd l<cr>:term<cr>i")
-vim.keymap.set("n", "<leader>th", ":wincmd s<cr>:wincmd j<cr>:term<cr>i")
+vim.keymap.set("n", "<leader>th", ":wincmd v<cr>:wincmd l<cr>:term<cr>i")
+vim.keymap.set("n", "<leader>tv", ":wincmd s<cr>:wincmd j<cr>:term<cr>i")
 vim.keymap.set("n", "<leader>tt", ":term<cr>i")
 vim.keymap.set("t", "fj", "<C-\\><C-n>")
 

@@ -3,26 +3,18 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+
+# Global (across all systems on this config)
+alias l="ls -la"
+alias goodbye="systemctl poweroff"
+export TERMINAL="alacritty"
 alias gen_tags='ctags $(find . -regextype sed -regex ".*\/*\.\(c\|h\)\(pp\|\)")'
 
-# RPM env vars
-# idk why i have to set these but gcc keeps yelling at me
-export RPM_ARCH=$(uname -m)
-export RPM_PACKAGE_RELEASE=1.0
-export RPM_PACKAGE_VERSION=1.0
-export RPM_PACKAGE_NAME=dio_location_tests
-
-# Custom aliases
-alias l="ls -la"
-alias dio="ssh myra@diomonster"
-alias diomnt="sshfs myra@diomonster:/home/myra ~/mnt/diomonster -o reconnect"
-alias goodbye="systemctl poweroff"
-
-# custom environment vars
-export TERMINAL="blackbox"
-export DIO_LOCAL_PREFIX=/home/myra/DLOCAL
-export PKG_CONFIG_PATH=$DIO_LOCAL_PREFIX/lib64/pkgconfig:/usr/lib64/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig
-export LD_LIBRARY_PATH=$DIO_LOCAL_PREFIX/lib64:/usr/lib64:/usr/lib
+# if a local zshrc exists, source it here
+# allows for some zsh config thats not shared
+if [ -f ~/.zshrc-local ]; then
+	source ~/.zshrc-local
+fi
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
