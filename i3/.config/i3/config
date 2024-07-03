@@ -69,8 +69,13 @@ bindsym $mod+Return exec $TERM
 # and open on startup
 exec $TERM
 
+# start gnome settings daemon on startup
+# for ssh keyring management
+# from: https://faq.i3wm.org/question/2498/ssh-sessions-in-i3.1.html
+exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon
+
 # start udiskie for removable disk management
-exec_always --no-startup-id udiskie -t
+exec --no-startup-id udiskie -t
 
 # kill focused window
 bindsym $mod+Shift+q kill
