@@ -49,6 +49,9 @@ vim.keymap.set("n", "<leader>b", ":b ")
 -- use system clipboard
 vim.cmd("set clipboard=unnamedplus")
 
+-- and modify keybind for faster pasting
+vim.keymap.set({"i", "t"}, "<A-P>", "<ESC>pa")
+
 -- initialize lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
