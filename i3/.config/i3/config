@@ -41,7 +41,7 @@ bindsym $mod+Control+x exec loginctl lock-session
 exec --no-startup-id nm-applet
 
 # set desktop background
-exec --no-startup-id feh --bg-fill ~/Pictures/background.png
+exec --no-startup-id feh --bg-fill ~/background.png
 
 # start bluetooth applet
 exec --no-startup-id blueman-applet

@@ -7,7 +7,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # Global (across all systems on this config)
 alias l="ls -la"
 alias goodbye="systemctl poweroff"
-export TERMINAL="alacritty"
+export TERMINAL="alacritty -e nvim t"
 alias gen_tags='ctags $(find . -regextype sed -regex ".*\/*\.\(c\|h\)\(pp\|\)")'
 
 # if a local zshrc exists, source it here
