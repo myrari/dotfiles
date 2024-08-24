@@ -10,7 +10,7 @@ return {
 		end,
 	},
 	"folke/neodev.nvim",
-	{ 
+	{
 		"folke/which-key.nvim",
 		event = "VeryLazy",
 		init = function()
@@ -20,12 +20,12 @@ return {
 	},
 	{ "folke/neoconf.nvim", cmd = "Neoconf" },
 	"jiangmiao/auto-pairs",
-	{ 
-		"navarasu/onedark.nvim", 
-		lazy = true, 
+	{
+		"navarasu/onedark.nvim",
+		lazy = true,
 		opts = {
 			style = "darker",
-		} 
+		}
 	},
 	{
 		"nvim-lualine/lualine.nvim",
@@ -35,10 +35,6 @@ return {
 			theme = "auto",
 			component_separators = { left = '', right = ''},
     		section_separators = { left = '', right = ''},
-  		  	disabled_filetypes = {
-   		  		statusline = {},
-      			winbar = {},
-    		},
     		ignore_focus = {},
     		always_divide_middle = true,
     		globalstatus = false,
@@ -46,8 +42,24 @@ return {
       			statusline = 1000,
       			tabline = 1000,
       			winbar = 1000,
-    		}
-		}
+    		},
+			sections = {
+			    lualine_a = {'mode'},
+			    lualine_b = {'diff', 'diagnostics'},
+			    lualine_c = {'filename'},
+			    lualine_x = {'filetype'},
+			    lualine_y = {'progress'},
+			    lualine_z = {'location'},
+			},
+			inactive_sections = {
+			    lualine_a = {},
+			    lualine_b = {},
+			    lualine_c = {'filename'},
+			    lualine_x = {},
+			    lualine_y = {},
+			    lualine_z = {}
+			},
+		},
 	},
 	{
 		"nvim-telescope/telescope-file-browser.nvim",
@@ -110,5 +122,15 @@ return {
 			enabled = true,
 			char = '|',
 		},
+	},
+	{
+		"amitds1997/remote-nvim.nvim",
+		version = "0.3.11",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"MunifTanjim/nui.nvim",
+			"nvim-telescope/telescope.nvim",
+		},
+		config = true,
 	},
 }
