@@ -98,6 +98,9 @@ return {
 				"~/projects/*",
 				"~/dotfiles/*",
 				"mnt/diomonster/repo/*",
+				"~/Documents/School/MATH*",
+				"~/Documents/School/CS*/*",
+				"~/Documents/School/LING*/*",
 			},
 		},
 		init = function ()

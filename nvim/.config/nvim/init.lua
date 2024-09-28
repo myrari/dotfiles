@@ -44,7 +44,7 @@ vim.keymap.set("t", "fj", "<C-\\><C-n>")
 vim.keymap.set({ "i", "v", "o" }, "fj", "<ESC>")
 
 -- faster buffer switching
-vim.keymap.set("n", "<leader>b", "<cmd>b ")
+vim.keymap.set("n", "<leader>b", ":b ")
 
 -- use system clipboard
 vim.cmd("set clipboard=unnamedplus")
@@ -102,10 +102,10 @@ local lsp_flags = {}
 
 -- filetype fix for wgsl_analyzer
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
-  pattern = "*.wgsl",
-  callback = function()
-    vim.bo.filetype = "wgsl"
-  end,
+	pattern = "*.wgsl",
+	callback = function()
+		vim.bo.filetype = "wgsl"
+	end,
 })
 
 require("mason-lspconfig").setup({
@@ -119,10 +119,24 @@ require("mason-lspconfig").setup({
 })
 
 -- show full diagnostic error
-vim.keymap.set("n", "<leader>e", "<cmd>lua vim.diagnostic.open_float()<CR>")
+-- vim.keymap.set("n", "<leader>e", "<cmd>lua vim.diagnostic.open_float()<CR>")
+vim.keymap.set("n", "<leader>e", function()
+	vim.diagnostic.open_float()
+end)
 
 -- fast rename
-vim.keymap.set("n", "<leader>r", "<cmd> lua vim.lsp.buf.rename()<CR>")
+-- vim.keymap.set("n", "<leader>r", "<cmd>lua vim.lsp.buf.rename()<CR>")
+vim.keymap.set("n", "<leader>r", function()
+	vim.lsp.buf.rename()
+end)
+
+-- reformat
+vim.keymap.set("n", "<leader>ff", function()
+	vim.lsp.buf.format()
+end)
+
+-- custom project build script
+vim.keymap.set("n", "B", "<cmd>!build_proj<CR>")
 
 -- enable snippets and configure keybinds
 require("luasnip.loaders.from_vscode").lazy_load()
