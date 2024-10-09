@@ -37,7 +37,7 @@ vim.keymap.set("n", "<leader>v", "<cmd>wincmd s<cr><cmd>wincmd j<cr>")
 -- terminal keybinds
 vim.keymap.set("n", "<leader>th", "<cmd>wincmd v<cr><cmd>wincmd l<cr><cmd>term<cr><cmd>set nonu<cr>i")
 vim.keymap.set("n", "<leader>tv", "<cmd>wincmd s<cr><cmd>wincmd j<cr><cmd>term<cr><cmd>set nonu<cr>i")
-vim.keymap.set("n", "<leader>tt", "<cmd>term<cr><cmd>set nonu<cr>i")
+vim.keymap.set("n", "<leader>tt", "<cmd>term<cr>i")
 vim.keymap.set("t", "fj", "<C-\\><C-n>")
 
 -- same command to exit other modes
@@ -92,7 +92,7 @@ end
 local lsp_zero = require("lsp-zero")
 lsp_zero.extend_lspconfig()
 
-lsp_zero.on_attach(function(client, bufnr)
+lsp_zero.on_attach(function(_, bufnr)
 	lsp_zero.default_keymaps({ buffer = bufnr })
 end)
 
@@ -136,7 +136,10 @@ vim.keymap.set("n", "<leader>ff", function()
 end)
 
 -- custom project build script
-vim.keymap.set("n", "B", "<cmd>!build_proj<CR>")
+vim.keymap.set("n", "B", function ()
+	vim.cmd("!build_proj "..vim.fn.expand("%"))
+end)
+vim.keymap.set("n", "C", "<cmd>!build_proj<CR>")
 
 -- enable snippets and configure keybinds
 require("luasnip.loaders.from_vscode").lazy_load()
@@ -152,6 +155,17 @@ local cmp = require("cmp")
 local cmp_action = lsp_zero.cmp_action()
 
 cmp.setup({
+	sources = {
+		{ name = "vimtex", },
+		{
+			name = "latex_symbols",
+    	  	option = {
+    	    	strategy = 2, -- latex command
+    	  	},
+    	},
+		{ name = "nvim_lsp", },
+		{ name = "luasnip", },
+	},
 	mapping = cmp.mapping.preset.insert({
 		['<CR>'] = cmp.mapping(function(fallback)
 			if cmp.visible() then

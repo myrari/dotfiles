@@ -19,7 +19,23 @@ return {
 		end
 	},
 	{ "folke/neoconf.nvim", cmd = "Neoconf" },
-	"jiangmiao/auto-pairs",
+	{
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		config = true,
+		init = function ()
+			local Rule = require("nvim-autopairs.rule")
+			local autopairs = require("nvim-autopairs")
+
+			autopairs.add_rules({
+				Rule("$", "$", "tex")
+					:with_move(function (opts)
+						return opts.next_char == opts.char
+					end
+					)
+			})
+		end,
+	},
 	{
 		"navarasu/onedark.nvim",
 		lazy = true,
@@ -83,8 +99,8 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 	},
 	"neovim/nvim-lspconfig",
-	"hrsh7th/cmp-nvim-lsp",
 	"hrsh7th/nvim-cmp",
+	"hrsh7th/cmp-nvim-lsp",
 	{
 		"L3MON4D3/LuaSnip",
 		version = "v2.*",
@@ -97,7 +113,7 @@ return {
 			projects = {
 				"~/projects/*",
 				"~/dotfiles/*",
-				"mnt/diomonster/repo/*",
+				"~/Documents/Programming/Rust/*",
 				"~/Documents/School/MATH*",
 				"~/Documents/School/CS*/*",
 				"~/Documents/School/LING*/*",
@@ -114,6 +130,26 @@ return {
 		},
 		lazy = false,
 		priority = 100,
+	},
+	{
+		"lervag/vimtex",
+		lazy = false,
+		init = function ()
+			vim.g.vimtex_view_method = "skim"
+			vim.g.vimtex_format_enabled = "1"
+		end,
+	},
+	"micangl/cmp-vimtex",
+	"kdheepak/cmp-latex-symbols",
+	{
+	    "kylechui/nvim-surround",
+	    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+	    event = "VeryLazy",
+	    config = function()
+	        require("nvim-surround").setup({
+	            -- Configuration here, or leave empty to use defaults
+	        })
+	    end
 	},
 	{
 		"xiyaowong/transparent.nvim",
