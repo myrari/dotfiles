@@ -201,6 +201,10 @@ cmp.setup({
 			end
 		end, { "i", "s" }),
 
+		-- scroll docs
+		["<C-u>"] = cmp.mapping.scroll_docs(-4),
+		["<C-d>"] = cmp.mapping.scroll_docs(4),
+
 		-- navigate snipper placeholders
 		['<C-l>'] = cmp_action.luasnip_jump_forward(),
 		['<C-k>'] = cmp_action.luasnip_jump_backward(),
