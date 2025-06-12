@@ -71,6 +71,7 @@ return {
 				"pyright",
 				"verible",
 				"r_language_server",
+				"fish_lsp",
 			}
 
 			-- set up stock lsps
