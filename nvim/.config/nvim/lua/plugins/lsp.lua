@@ -72,6 +72,7 @@ return {
 				"verible",
 				"r_language_server",
 				"fish_lsp",
+				"taplo",
 			}
 
 			-- set up stock lsps
