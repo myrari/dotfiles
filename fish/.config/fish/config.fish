@@ -9,9 +9,13 @@ function reload
     source "$HOME/.config/fish/config.fish"
 end
 
-# short ls alias
+# short alias to eza (or just ls)
 function l
-    ls -la $argv
+    if type -q eza
+		eza -la $argv
+	else
+        ls -la $argv
+    end
 end
 
 # add cargo bin
@@ -27,7 +31,7 @@ if status is-interactive
         source ~/.config/fish/config.fish
     end
 
-	# oendark theme
+    # oendark theme
     if set -q VIM
         # Using from vim/neovim.
         set onedark_options -256
@@ -39,9 +43,9 @@ if status is-interactive
         set onedark_options -256
     end
 
-	# custom red colors w/ more saturation
-	set_onedark_color red D04134 current
-	set_onedark_color brred FB505E current
+    # custom red colors w/ more saturation
+    set_onedark_color red D04134 current
+    set_onedark_color brred FB505E current
 
     set_onedark $onedark_options
 
