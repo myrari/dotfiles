@@ -23,6 +23,9 @@ if test -e "$HOME/.cargo"
     fish_add_path "$HOME/.cargo/bin/"
 end
 
+# ssh agent
+fish_ssh_agent
+
 if status is-interactive
     # Commands to run in interactive sessions can go here
 
