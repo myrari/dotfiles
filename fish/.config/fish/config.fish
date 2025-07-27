@@ -28,10 +28,14 @@ function l
     end
 end
 
-# add cargo bin
+# add rustup binaries
 set -lx RUSTUP_PATH (brew --prefix rustup)
 if test -e "$RUSTUP_PATH"
     fish_add_path "$RUSTUP_PATH/bin/"
+end
+# ... and self-installed rust binaries
+if test -e "$HOME/.cargo/bin"
+    fish_add_path "$HOME/.cargo/bin"
 end
 
 # ssh agent
