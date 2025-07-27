@@ -22,15 +22,16 @@ end
 # short alias to eza (or just ls)
 function l
     if type -q eza
-		eza -la $argv
+		eza -lah $argv
 	else
-        ls -la $argv
+        ls -lah $argv
     end
 end
 
 # add cargo bin
-if test -e "$HOME/.cargo"
-    fish_add_path "$HOME/.cargo/bin/"
+set -lx RUSTUP_PATH (brew --prefix rustup)
+if test -e "$RUSTUP_PATH"
+    fish_add_path "$RUSTUP_PATH/bin/"
 end
 
 # ssh agent
