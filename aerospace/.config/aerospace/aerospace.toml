@@ -27,6 +27,9 @@ cmd-alt-m = 'move-workspace-to-monitor --wrap-around next'
 
 alt-shift-space = 'layout floating tiling'
 
+# switch between workspaces
+alt-tab = 'workspace-back-and-forth'
+
 alt-1 = 'workspace 1'
 alt-2 = 'workspace 2'
 alt-3 = 'workspace 3'
