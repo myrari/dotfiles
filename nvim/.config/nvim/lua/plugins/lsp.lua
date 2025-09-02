@@ -73,6 +73,7 @@ return {
 				"r_language_server",
 				"fish_lsp",
 				"taplo",
+				"ocamllsp",
 			}
 
 			-- set up stock lsps
