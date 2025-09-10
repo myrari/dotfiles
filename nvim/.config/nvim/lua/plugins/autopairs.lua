@@ -47,7 +47,7 @@ return {
 			npairs.add_rules({
 				Rule("`", "`", { "-tex", "-latex" })
 					:with_move(cond.done()),
-				Rule("'", "'", { "-tex", "-latex", "-md", "-markdown" })
+				Rule("\'", "\'", { "-tex", "-latex", "-md", "-markdown", "-ml", "-ocaml" })
 					:with_move(cond.done()),
 			})
 
