@@ -25,6 +25,9 @@ vim.keymap.set({ "n", "v", "o" }, '<C-w><C-k>', '<C-w>j')
 vim.keymap.set({ "n", "v", "o" }, '<C-w><C-l>', '<C-w>k')
 vim.keymap.set({ "n", "v", "o" }, '<C-w><C-;>', '<C-w>l')
 
+-- custom text object for whole buffer
+vim.keymap.set({ "x", "o" }, "ae", ':<C-u>normal! mzggVG<CR>`z')
+
 -- shortcuts for splitting
 vim.keymap.set("n", "<leader>v", ":split<CR><C-w>j")
 vim.keymap.set("n", "<leader>h", ":vsplit<CR><C-w>l")
