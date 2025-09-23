@@ -1,0 +1,21 @@
+# when selecting text with mouse, copy to clipboard
+set selection-clipboard clipboard
+
+set vertical-center true
+set adjust-open width
+
+# rebind movement keys
+unmap [normal] h
+unmap [normal] H
+
+map [normal] j scroll left
+map [normal] k scroll down
+map [normal] l scroll up
+map [normal] ; scroll right
+
+map [normal] J scroll page-top
+map [normal] K navigate next
+map [normal] L navigate previous
+
+# can't rebind colon bc commands (who needs bottom of page anyway pfft)
+# map [normal] : scroll page-bottom
