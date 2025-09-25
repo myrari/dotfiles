@@ -25,19 +25,13 @@ return {
 	-- },
 	{
 		"neovim/nvim-lspconfig",
-		-- dependencies = {
-		-- 	"williamboman/mason.nvim",
-		-- 	"mason-org/mason-lspconfig.nvim",
-		-- },
+		dependencies = {
+			-- "williamboman/mason.nvim",
+			-- "mason-org/mason-lspconfig.nvim",
+			"hrsh7th/cmp-nvim-lsp",
+		},
 		config = function()
 			vim.opt.signcolumn = "yes"
-
-			local lspconfig_defaults = require('lspconfig').util.default_config
-			lspconfig_defaults.capabilities = vim.tbl_deep_extend(
-				'force',
-				lspconfig_defaults.capabilities,
-				require('cmp_nvim_lsp').default_capabilities()
-			)
 
 			vim.api.nvim_create_autocmd('LspAttach', {
 				desc = 'LSP actions',
@@ -60,7 +54,7 @@ return {
 
 			-- instead of using mason for LSPs, we do everything ourselves
 
-			local lsp_cfg = require("lspconfig")
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 			-- all lsps that do not require additional setup
 			local stock_lsps = {
@@ -78,13 +72,16 @@ return {
 
 			-- set up stock lsps
 			for _, lsp in pairs(stock_lsps) do
-				lsp_cfg[lsp].setup({})
+				-- lsp_cfg[lsp].setup({})
+				vim.lsp.config(lsp, {
+					capabilities = capabilities,
+				})
+				vim.lsp.enable(lsp)
 			end
 
-			-- lsp_cfg['rust_analyzer'].setup({})
-
 			-- individual lsps
-			lsp_cfg.lua_ls.setup({
+			vim.lsp.config("lua_ls", {
+				capabilities = capabilities,
 				settings = {
 					Lua = {
 						diagnostics = {
@@ -93,6 +90,7 @@ return {
 					},
 				}
 			})
+			vim.lsp.enable("lua_ls")
 		end,
 	},
 	{
@@ -118,7 +116,7 @@ return {
 			-- load default snippets / friendly-snippets
 			require("luasnip.loaders.from_vscode").lazy_load({
 				-- remove markdown snippets
-				exclude = { "markdown" },
+				exclude = { "markdown", "all" },
 			})
 
 			-- load custom snippets
