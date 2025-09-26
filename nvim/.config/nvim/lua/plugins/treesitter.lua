@@ -20,6 +20,7 @@ return {
 					-- "latex",
 					"yaml",
 					"typst",
+					"forth",
 				},
 				sync_install = false,
 				highlight = { enable = true },
