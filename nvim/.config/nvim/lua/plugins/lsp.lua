@@ -91,6 +91,17 @@ return {
 				}
 			})
 			vim.lsp.enable("lua_ls")
+
+			vim.lsp.config("tinymist", {
+				capabilities = capabilities,
+				settings = {
+					formatterMode = "typstyle",
+					formatterIndentSize = 4,
+					formatterPrintWidth = 79,
+					formatterProseWrap = true,
+				},
+			})
+			vim.lsp.enable("tinymist")
 		end,
 	},
 	{
