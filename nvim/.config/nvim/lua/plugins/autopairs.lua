@@ -12,7 +12,7 @@ return {
 
 			-- add spaces inside brackets
 			local brackets = {
-				{ '(', ')' }, { '[', ']' }, { '{', '}' }
+				{ '(', ')' }, { '[', ']' }, { '{', '}' }, { '$', '$' }
 			}
 			npairs.add_rules({
 				-- Rule for a pair with left-side ' ' and right side ' '
@@ -24,7 +24,8 @@ return {
 						return vim.tbl_contains({
 							brackets[1][1] .. brackets[1][2],
 							brackets[2][1] .. brackets[2][2],
-							brackets[3][1] .. brackets[3][2]
+							brackets[3][1] .. brackets[3][2],
+							brackets[4][1] .. brackets[4][2],
 						}, pair)
 					end)
 					:with_move(cond.none())
@@ -36,7 +37,8 @@ return {
 						return vim.tbl_contains({
 							brackets[1][1] .. '  ' .. brackets[1][2],
 							brackets[2][1] .. '  ' .. brackets[2][2],
-							brackets[3][1] .. '  ' .. brackets[3][2]
+							brackets[3][1] .. '  ' .. brackets[3][2],
+							brackets[4][1] .. '  ' .. brackets[4][2],
 						}, context)
 					end)
 			})
@@ -48,12 +50,13 @@ return {
 				Rule("`", "`", { "-tex", "-latex" })
 					:with_move(cond.done()),
 				Rule("\'", "\'", { "-tex", "-latex", "-md", "-markdown", "-ml", "-ocaml" })
+					:with_pair(cond.not_before_regex("%w"))
 					:with_move(cond.done()),
 			})
 
-			-- add dollar signs for tex
+			-- add dollar signs for tex & typst
 			npairs.add_rules({
-				Rule("$", "$", { "tex", "latex" })
+				Rule("$", "$", { "tex", "latex", "typst", "typ" })
 					:with_move(function(opts)
 						return opts.next_char == opts.char
 					end
@@ -75,6 +78,14 @@ return {
 					:with_move(cond.done()),
 				Rule("**", "*", { "md", "markdown" }),
 				Rule(" '", "'", { "md", "markdown" })
+					:with_move(cond.done()),
+			})
+
+			-- extra formatting for typst
+			npairs.add_rules({
+				Rule("*", "*", { "typst", "typ" })
+					:with_move(cond.done()),
+				Rule("_", "_", { "typst", "typ" })
 					:with_move(cond.done()),
 			})
 		end,
