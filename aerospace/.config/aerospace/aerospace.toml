@@ -85,3 +85,15 @@ l = 'resize height -50'
 semicolon = 'resize width +50'
 enter = 'mode main'
 esc = 'mode main'
+
+# custom window rules
+
+# finder
+[[on-window-detected]]
+    if.app-name-regex-substring = 'finder'
+    run = ['layout floating']
+
+# wip-* windows
+[[on-window-detected]]
+    if.window-title-regex-substring = 'wip-.*'
+    run = ['layout floating']
