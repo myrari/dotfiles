@@ -54,6 +54,12 @@ return {
 					:with_move(cond.done()),
 			})
 
+			-- comment pairs for ML
+			npairs.add_rules({
+				Rule("(* ", " *", { "ml", "ocaml", "mli" }),
+				Rule("(** ", " *", { "ml", "ocaml", "mli" }),
+			})
+
 			-- add dollar signs for tex & typst
 			npairs.add_rules({
 				Rule("$", "$", { "tex", "latex", "typst", "typ" })
