@@ -47,9 +47,9 @@ return {
 			npairs.remove_rule("`")
 			npairs.remove_rule("'")
 			npairs.add_rules({
-				Rule("`", "`", { "-tex", "-latex" })
+				Rule("`", "`", { "-tex", "-latex", "-lisp" })
 					:with_move(cond.done()),
-				Rule("\'", "\'", { "-tex", "-latex", "-md", "-markdown", "-ml", "-ocaml" })
+				Rule("\'", "\'", { "-tex", "-latex", "-ml", "-ocaml" })
 					:with_pair(cond.not_before_regex("%w"))
 					:with_move(cond.done()),
 			})
@@ -63,10 +63,7 @@ return {
 			-- add dollar signs for tex & typst
 			npairs.add_rules({
 				Rule("$", "$", { "tex", "latex", "typst", "typ" })
-					:with_move(function(opts)
-						return opts.next_char == opts.char
-					end
-					),
+					:with_move(cond.done()),
 				Rule("``", "''", { "tex", "latex" })
 			})
 
@@ -78,13 +75,19 @@ return {
 				})
 			end
 
+			-- overwrite parentheses rules for lisp
+			npairs.add_rules({
+				Rule("(", ")", { "lisp" })
+					:with_pair(cond.done())
+			})
+
 			-- extra formatting for markdown
 			npairs.add_rules({
 				Rule("*", "*", { "md", "markdown" })
+					:with_pair(cond.not_before_regex("%*"))
+					:with_pair(cond.not_after_regex("%*"))
 					:with_move(cond.done()),
 				Rule("**", "*", { "md", "markdown" }),
-				Rule(" '", "'", { "md", "markdown" })
-					:with_move(cond.done()),
 			})
 
 			-- extra formatting for typst
