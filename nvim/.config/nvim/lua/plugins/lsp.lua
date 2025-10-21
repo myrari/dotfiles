@@ -140,7 +140,7 @@ return {
 					{ name = "nvim_lsp" },
 					{ name = "luasnip" },
 					{ name = "vimtex" },
-					{ name = "buffer" },
+					-- { name = "buffer" },
 				},
 				snippet = {
 					expand = function(args)
