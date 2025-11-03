@@ -95,6 +95,7 @@ return {
 				Rule("*", "*", { "typst", "typ" })
 					:with_move(cond.done()),
 				Rule("_", "_", { "typst", "typ" })
+					:with_pair(cond.not_before_regex("%w"))
 					:with_move(cond.done()),
 			})
 		end,
