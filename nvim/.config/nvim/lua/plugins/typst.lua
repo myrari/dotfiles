@@ -11,7 +11,7 @@ return {
 			-- setup with config
 			require("typst-preview").setup({
 				follow_cursor = true,
-				open_cmd = "open -a Safari %s",
+				open_cmd = "midori %s 2>/dev/null 1>/dev/null & disown",
 
 				-- dependencies are installed on system, so don't install them here
 				dependencies_bin = {
@@ -20,7 +20,7 @@ return {
 				},
 
 				-- dark mode inversions, but ignore images
-				-- invert_colors = '{"image": "never", "rest": "auto"}',
+				invert_colors = '{"image": "never", "rest": "auto"}',
 			})
 		end,
 	}
