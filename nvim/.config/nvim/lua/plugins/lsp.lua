@@ -39,7 +39,7 @@ return {
 					local opts = { buffer = event.buf }
 
 					-- vim.keymap.set('n', '<leader>e', lua vim.lsp.buf.hover(), opts)
-					vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, opts)
+					-- vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, opts)
 					vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
 					vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
 					vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
@@ -50,6 +50,10 @@ return {
 					vim.keymap.set('n', '<leader>f', vim.lsp.buf.format, opts)
 					vim.keymap.set('n', '<F4>', vim.lsp.buf.code_action, opts)
 				end,
+			})
+
+			vim.diagnostic.config({
+				virtual_lines = true,
 			})
 
 			-- instead of using mason for LSPs, we do everything ourselves
@@ -68,6 +72,7 @@ return {
 				"fish_lsp",
 				"taplo",
 				"ocamllsp",
+				"gopls",
 			}
 
 			-- set up stock lsps

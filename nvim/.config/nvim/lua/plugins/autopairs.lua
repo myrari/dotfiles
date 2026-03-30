@@ -49,7 +49,7 @@ return {
 			npairs.add_rules({
 				Rule("`", "`", { "-tex", "-latex", "-lisp" })
 					:with_move(cond.done()),
-				Rule("\'", "\'", { "-tex", "-latex", "-ml", "-ocaml" })
+				Rule("\'", "\'", { "-tex", "-latex", "-ml", "-ocaml", "-rust", "-rs" })
 					:with_pair(cond.not_before_regex("%w"))
 					:with_move(cond.done()),
 			})

@@ -5,27 +5,27 @@ return {
 		'nvim-treesitter/nvim-treesitter',
 		build = ":TSUpdate",
 		config = function()
-			local configs = require("nvim-treesitter.configs")
-
-			configs.setup({
-				ensure_installed = {
-					"c",
-					"lua",
-					"vim",
-					"vimdoc",
-					"rust",
-					"markdown",
-					"markdown_inline",
-					"html",
-					-- "latex",
-					"yaml",
-					"typst",
-					"forth",
-				},
-				sync_install = false,
-				highlight = { enable = true },
-				indent = { enable = true },
-			})
+			-- local configs = require("nvim-treesitter.configs")
+			--
+			-- configs.setup({
+			-- 	ensure_installed = {
+			-- 		"c",
+			-- 		"lua",
+			-- 		"vim",
+			-- 		"vimdoc",
+			-- 		"rust",
+			-- 		"markdown",
+			-- 		"markdown_inline",
+			-- 		"html",
+			-- 		-- "latex",
+			-- 		"yaml",
+			-- 		"typst",
+			-- 		"forth",
+			-- 	},
+			-- 	sync_install = false,
+			-- 	highlight = { enable = true },
+			-- 	indent = { enable = true },
+			-- })
 		end,
 		-- event = { "BufReadPost", "BufNewFile" },
 		main = "nvim-treesitter.configs",
