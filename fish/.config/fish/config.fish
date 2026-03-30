@@ -9,16 +9,6 @@ function reload
     source "$HOME/.config/fish/config.fish"
 end
 
-# homebrew
-if test -e /opt/homebrew/bin
-	set --global --export HOMEBREW_PREFIX "/opt/homebrew";
-	set --global --export HOMEBREW_CELLAR "/opt/homebrew/Cellar";
-	set --global --export HOMEBREW_REPOSITORY "/opt/homebrew";
-	fish_add_path --global --move --path "/opt/homebrew/bin" "/opt/homebrew/sbin";
-	if test -n "$MANPATH[1]"; set --global --export MANPATH '' $MANPATH; end;
-	if not contains "/opt/homebrew/share/info" $INFOPATH; set --global --export INFOPATH "/opt/homebrew/share/info" $INFOPATH; end;
-end
-
 # short alias to eza (or just ls)
 function l
     if type -q eza
@@ -28,11 +18,11 @@ function l
     end
 end
 
-# add rustup binaries
-set -lx RUSTUP_PATH (brew --prefix rustup)
-if test -e "$RUSTUP_PATH"
-    fish_add_path "$RUSTUP_PATH/bin/"
+# nix binaries
+if test -e "$HOME/.nix-profile/bin"
+    fish_add_path "$HOME/.nix-profile/bin"
 end
+
 # ... and self-installed rust binaries
 if test -e "$HOME/.cargo/bin"
     fish_add_path "$HOME/.cargo/bin"
