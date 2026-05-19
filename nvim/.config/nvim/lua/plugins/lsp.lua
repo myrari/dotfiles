@@ -9,25 +9,9 @@ return {
 		},
 		opts = {},
 	},
-	-- {
-	-- 	"williamboman/mason.nvim",
-	-- 	lazy = false,
-	-- },
-	-- {
-	-- 	"mason-org/mason-lspconfig.nvim",
-	-- 	dependencies = {
-	-- 		"mason-org/mason.nvim",
-	-- 		"neovim/nvim-lspconfig",
-	-- 	},
-	-- 	opts = {
-	-- 		automatic_enable = true,
-	-- 	},
-	-- },
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
-			-- "williamboman/mason.nvim",
-			-- "mason-org/mason-lspconfig.nvim",
 			"hrsh7th/cmp-nvim-lsp",
 		},
 		config = function()
@@ -38,8 +22,6 @@ return {
 				callback = function(event)
 					local opts = { buffer = event.buf }
 
-					-- vim.keymap.set('n', '<leader>e', lua vim.lsp.buf.hover(), opts)
-					-- vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, opts)
 					vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
 					vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
 					vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
@@ -77,7 +59,6 @@ return {
 
 			-- set up stock lsps
 			for _, lsp in pairs(stock_lsps) do
-				-- lsp_cfg[lsp].setup({})
 				vim.lsp.config(lsp, {
 					capabilities = capabilities,
 				})
@@ -124,11 +105,6 @@ return {
 			local cmp = require("cmp")
 			local ls = require("luasnip")
 
-			-- ls.config.set_config {
-			-- 	history = true,
-			-- 	updateevents = "TextChanged,TextChangedI"
-			-- }
-
 			-- load default snippets / friendly-snippets
 			require("luasnip.loaders.from_vscode").lazy_load({
 				-- remove markdown snippets
@@ -149,7 +125,6 @@ return {
 				},
 				snippet = {
 					expand = function(args)
-						-- vim.snippet.expand(args.body)
 						ls.lsp_expand(args.body)
 					end,
 				},
@@ -167,18 +142,6 @@ return {
 						end
 					end),
 
-					-- if cmp.visible() then
-					-- 	if ls.expandable() then
-					-- 		ls.expand()
-					-- 	else
-					-- 		cmp.confirm({
-					-- 			select = false,
-					-- 			behavior = cmp.ConfirmBehavior.Replace,
-					-- 		})
-					-- 	end
-					-- else
-					-- 	fallback()
-					-- end
 					-- scroll up and down
 					['<Tab>'] = cmp.mapping(function(fallback)
 						if cmp.visible() then
