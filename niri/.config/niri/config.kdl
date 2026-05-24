@@ -325,10 +325,10 @@ spawn-at-startup "vesktop"
 // other window rules
 
 window-rule {
-	match app-id="com.mojang.minecraft"
+	match app-id=r#".*(M|m)inecraft.*"#
 
-	open-maximized true
-	// open-fullscreen true
+	// open-maximized true
+	open-fullscreen true
 }
 
 window-rule {
