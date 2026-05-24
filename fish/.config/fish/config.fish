@@ -28,6 +28,11 @@ if test -e "$HOME/.cargo/bin"
     fish_add_path "$HOME/.cargo/bin"
 end
 
+# and rustup component binaries?? for some reason rustup stores these separate
+if test -e "/usr/lib/rustup/bin"
+	fish_add_path "/usr/lib/rustup/bin"
+end
+
 # ssh agent
 fish_ssh_agent
 
