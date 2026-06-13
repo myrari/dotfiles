@@ -20,7 +20,7 @@ return {
 				},
 
 				-- dark mode inversions, but ignore images
-				invert_colors = '{"image": "never", "rest": "auto"}',
+				-- invert_colors = '{"image": "never", "rest": "auto"}',
 			})
 		end,
 	}
