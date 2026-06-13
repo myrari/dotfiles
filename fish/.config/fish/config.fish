@@ -33,6 +33,11 @@ if test -e "/usr/lib/rustup/bin"
 	fish_add_path "/usr/lib/rustup/bin"
 end
 
+# add dotnet tool binaries if they exist
+if test -e "$HOME/.dotnet/tools"
+	fish_add_path "$HOME/.dotnet/tools"
+end
+
 # ssh agent
 fish_ssh_agent
 
