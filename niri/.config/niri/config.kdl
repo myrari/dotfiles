@@ -15,6 +15,7 @@ input {
             // For example:
             // layout "us,ru"
             // options "grp:win_space_toggle,compose:ralt,ctrl:nocaps"
+            options "compose:ralt"
 
             // If this section is empty, niri will fetch xkb settings
             // from org.freedesktop.locale1. You can control these using
@@ -68,6 +69,13 @@ input {
     // Focus windows and outputs automatically when moving the mouse into them.
     // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
     // focus-follows-mouse max-scroll-amount="0%"
+}
+
+// set environment settings to use ibus
+environment {
+    GTK_IM_MODULE "ibus"
+    QT_IM_MODULE "ibus"
+    XMODIFIERS "@im=ibus"
 }
 
 // You can configure outputs by their name, which you can find
@@ -324,6 +332,7 @@ spawn-at-startup "vesktop"
 
 // other window rules
 
+// fullscreen minecraft
 window-rule {
 	match app-id=r#".*(M|m)inecraft.*"#
 
@@ -331,6 +340,7 @@ window-rule {
 	open-fullscreen true
 }
 
+// open WIP windows floating
 window-rule {
 	match title=r#"^wip-.*"#
 	
@@ -341,6 +351,14 @@ window-rule {
 	match title=r#"^wipf-.*"#
 	
 	open-maximized true
+}
+
+// open browser extension windows floating
+window-rule {
+    match app-id="zen" 
+    match title=r#"^Extension: .*"#
+
+    open-floating true
 }
 
 binds {
